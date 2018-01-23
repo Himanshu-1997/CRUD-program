@@ -97,12 +97,18 @@ app.get('/', function(req, res){
   });
 });
 
+//facebook-middleware
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+
+app.get('/auth/facebook/callback', 
+	  passport.authenticate('facebook', { successRedirect: '/',
+	                                      failureRedirect: '/users/login' }));
+
 // Route Files
 let articles = require('./routes/articles');
 let users = require('./routes/users');
 app.use('/articles', articles);
 app.use('/users', users);
-
 // Start Server
 app.listen(3000, function(){
   console.log('Server started on port 3000...');

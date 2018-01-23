@@ -33,19 +33,11 @@ router.post('/register', function(req, res){
       errors:errors
     });
   } else {
-    let newUser = new User({
-      name:name,
-      email:email,
-      username:username,
-      password:password
-    });
-
-    bcrypt.genSalt(10, function(err, salt){
-      bcrypt.hash(newUser.password, salt, function(err, hash){
-        if(err){
-          console.log(err);
-        }
-        newUser.password = hash;
+    let newUser = new User();
+      newUser.local.name = req.body.name;
+      newUser.local.email = req.body.email;
+      newUser.local.username = req.body.username;
+      newUser.local.password = req.body.password;
         newUser.save(function(err){
           if(err){
             console.log(err);
@@ -55,8 +47,6 @@ router.post('/register', function(req, res){
             res.redirect('/users/login');
           }
         });
-      });
-    });
   }
 });
 
@@ -67,7 +57,7 @@ router.get('/login', function(req, res){
 
 // Login Process
 router.post('/login', function(req, res, next){
-  passport.authenticate('local', {
+  passport.authenticate('local-login', {
     successRedirect:'/',
     failureRedirect:'/users/login',
     failureFlash: true
@@ -80,5 +70,6 @@ router.get('/logout', function(req, res){
   req.flash('success', 'You are logged out');
   res.redirect('/users/login');
 });
+
 
 module.exports = router;
