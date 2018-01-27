@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const config = require('./config/database');
+const multer = require('multer');
 
 mongoose.connect(config.database);
 let db = mongoose.connection;
@@ -39,6 +40,7 @@ app.use(bodyParser.json());
 
 // Set Public Folder
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 // Express Session Middleware
 app.use(session({
@@ -104,11 +106,21 @@ app.get('/auth/facebook/callback',
 	  passport.authenticate('facebook', { successRedirect: '/',
 	                                      failureRedirect: '/users/login' }));
 
+// google-middleware
+/*app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+
+app.get('/auth/google/callback', 
+	  passport.authenticate('google', { successRedirect: '/',
+	                                      failureRedirect: '/users/login' }));*/
+
 // Route Files
 let articles = require('./routes/articles');
 let users = require('./routes/users');
+let images = require('./routes/images');
 app.use('/articles', articles);
 app.use('/users', users);
+app.use('/images', images);
+
 // Start Server
 app.listen(3000, function(){
   console.log('Server started on port 3000...');

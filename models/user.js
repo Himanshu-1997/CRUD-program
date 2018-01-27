@@ -1,32 +1,25 @@
 const mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 // User Schema
 const UserSchema = mongoose.Schema({
-
 local:{	
-	name:{
-		type: String,
-		//required: true
+	name:String,
+	email:String,
+	username:String,
+	password:String
 	},
-	email:{
-		type: String,
-		//required: true
-	  },
-	username:{
-		type: String,
-		//required: true
-	  },
-	password:{
-		type: String,
-		//required: true
-	  }
-	},
-facebook: {
+facebook:{
 		id: String,
 		token: String,
 		name: String,
 		email: String
 	}
+/*google: {
+		id: String,
+		token: String,
+		email: String,
+		name: String
+	}*/
 });
 
 UserSchema.methods.generateHash = function(password){

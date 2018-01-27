@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 // Bring in User Model
@@ -38,6 +38,7 @@ router.post('/register', function(req, res){
       newUser.local.email = req.body.email;
       newUser.local.username = req.body.username;
       newUser.local.password = req.body.password;
+	  newUser.local.password = newUser.generateHash(newUser.local.password);
         newUser.save(function(err){
           if(err){
             console.log(err);

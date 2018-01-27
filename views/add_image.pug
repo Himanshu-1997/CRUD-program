@@ -1,0 +1,13 @@
+extends layout
+
+block content
+
+      h1 File Upload
+      form(action='/images/upload', method='POST', enctype='multipart/form-data')  
+        input(type='file', name='myImage')
+        br
+        input.btn.btn-primary(type='submit',value='Submit')
+      br
+      if {file} !='undefined'
+        img.responsive-img(src= file ,style='width:400px;height:400px;')
+

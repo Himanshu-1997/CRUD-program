@@ -1,8 +1,9 @@
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 const config = require('../config/database');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const FacebookStrategy = require('passport-facebook').Strategy;
+//var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const configAuth = require('./auth');
 module.exports = function(passport){
   // Local Strategy
@@ -28,8 +29,8 @@ module.exports = function(passport){
   }));*/
   
   passport.use('local-login', new LocalStrategy({
-			usernameField: 'username',
-			passwordField: 'password',
+			username: 'username',
+			password: 'password',
 			passReqToCallback: true
 		},
 		function(req, username, password, done){
@@ -92,5 +93,38 @@ module.exports = function(passport){
 	    }
 
 	));
+	
+	/*passport.use(new GoogleStrategy({
+	    clientID: configAuth.googleAuth.clientID,
+	    clientSecret: configAuth.googleAuth.clientSecret,
+	    callbackURL: configAuth.googleAuth.callbackURL
+	  },
+	  function(accessToken, refreshToken, profile, done) {
+	    	process.nextTick(function(){
+	    		User.findOne({'google.id': profile.id}, function(err, user){
+	    			if(err)
+	    				return done(err);
+	    			if(user)
+	    				return done(null, user);
+	    			else {
+	    				var newUser = new User();
+	    				newUser.google.id = profile.id;
+	    				newUser.google.token = accessToken;
+	    				newUser.google.name = profile.displayName;
+	    				newUser.google.email = profile.emails[0].value;
+
+	    				newUser.save(function(err){
+	    					if(err)
+	    						throw err;
+	    					return done(null, newUser);
+	    				})
+	    				console.log(profile);
+						return done(null, newUser);
+	    			}
+	    		});
+	    	});
+	    }
+
+	));*/
 
 }
