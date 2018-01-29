@@ -9,3 +9,20 @@
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
+.navbar-inverse{
+	background-color:#0C090A;
+}
+.jumbotron{
+	margin:0px auto;
+	padding:10px 10px 10px 10px;
+	background: #3B3131;
+	color: floralwhite;
+}
+ body{
+    background-color: #E5E4E2;
+ }
+.footer{
+	background-color: #D1C4E9;
+	margin: 0px auto;
+	padding: 20px 0px 20px 0px;
+}

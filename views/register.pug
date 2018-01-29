@@ -1,22 +1,30 @@
 extends layout
 
 block content
-  h1 Register
-  form(method='POST', action='/users/register')
-    #form-group
-      label Name:
-      input.form-control(name='name', type='text')
-    #form-group
-      label Email:
-      input.form-control(name='email', type='text')
-    #form-group
-      label Username:
-      input.form-control(name='username',type='text')
-    #form-group
-      label Password:
-      input.form-control(name='password',type='password')
-    #form-group
-      label Confirm:
-      input.form-control(name='password2',type='password')
+ .jumbotron
+   h1(style='font-family:Times New Roman;text-align:center;font-size:35px')
+    b Registration Form
+ .container
     br
+    form(method='POST', action='/users/register')
+      .form-group.row
+       label.col-md-1.form-group-label Name:
+       .col-md-11
+        input.form-control(name='name', type='text',placeholder="Name")
+      .form-group.row
+       label.col-md-1.form-group-label Email Id:
+       .col-md-11
+        input.form-control(name='email', type='text',placeholder="Email Address")
+      .form-group.row
+       label.col-md-1.form-group-label Username:
+       .col-md-11
+        input.form-control(name='username',type='text' , placeholder="User Name")
+      .form-group.row
+       label.col-md-1.form-group-label Password:
+       .col-md-11
+        input.form-control(name='password',type='password', placeholder="Password")
+      .form-group.row
+       label.col-md-1.form-group-label Confirm Password:
+       .col-md-11
+        input.form-control(name='password2',type='password',placeholder="Password")
     input.btn.btn-primary(type='submit',value='Submit')

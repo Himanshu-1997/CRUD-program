@@ -1,18 +1,25 @@
 extends layout
 
 block content
-  h1 Login
+ .jumbotron
+    h1(style='font-family:Times New Roman;text-align:center;font-size:35px')
+     b Login
+ .container
+  br
   form(method='POST', action='/users/login')
-    #form-group
-      label Username:
-      input.form-control(name='username',type='text')
-    #form-group
-      label Password:
-      input.form-control(name='password',type='password')
+    .form-group.row
+      label.col-md-1.form-group-label Username:
+      .col-md-11
+       input.form-control(name='username',type='text',placeholder="Username")
+    .form-group.row
+      label.col-md-1.form-group-label Password:
+      .col-md-11
+       input.form-control(name='password',type='password',placeholder="Password")
     br
     .container
-    input.btn.btn-success(type='submit',value='Submit')
+    input.btn.btn-primary(type='submit',value='Submit')
     br
     h3 Sign in using!
-    a.btn.btn-social-icon.btn-facebook(href='/auth/facebook')
+    a.btn.btn-social-icon.btn-facebook.btn-primary(href='/auth/facebook' role='button')
      i.fa.fa-facebook
+     |   Facebook

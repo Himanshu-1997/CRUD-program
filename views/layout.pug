@@ -1,6 +1,10 @@
 doctype html
 html
   head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(http-equiv='x-ua-compatible', content='ie=edge')
+    
     title Knowledgebase
     link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
     link(rel='stylesheet' href='/bower_components/font-awesome/css/font-awesome.css')
@@ -18,7 +22,9 @@ html
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
             li
-              a(href='/') Home
+              a.nav-link(href='/')
+               span.fa.fa-home.fa-lg
+               |  Home
             if user
               li
                 a(href='/articles/add') Add Article
@@ -32,7 +38,9 @@ html
               li
                 a(href='/users/register') Register
               li
-                a(href='/users/login') Login
+                a(href='/users/login')
+                  span.fa.fa-sign-in
+                  |  Login
     .container
       != messages('message', locals)
       if errors
@@ -42,7 +50,7 @@ html
       br
       hr
       footer
-        p Copyright &copy; 2017
+        p Copyright &copy; 2018
     script(src='/bower_components/jquery/dist/jquery.js')  
     script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
     script(src='/js/main.js')  

@@ -10,6 +10,10 @@ let articleSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  /*author1:{
+    type: String,
+    required: true
+  },*/
   body:{
     type: String,
     required: true

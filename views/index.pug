@@ -1,14 +1,14 @@
 extends layout
 
 block content
-  h1 #{title}
+  h1(style='font-family:Georgia;text-align:center;font-size:35px') #{title}
   ul.list-group
     each article, i in articles
       li.list-group-item
         a(href="/articles/"+article._id)= article.title
-  h1 Images
+  h1(style='font-family:Georgia;text-align:center;font-size:35px') Images
   ul.list-group
    li.list-group-item
-     a(href='/uploads/myImage-1517041029828.jpg') image1
+     a(href='/uploads/myImage-1517065381900.jpg') image1
    li.list-group-item
-     a(href='/uploads/myImage-1517042227535.jpg') image2
+     a(href='/uploads/myImage-1517065449622.jpg') image2
